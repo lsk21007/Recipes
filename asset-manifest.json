@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.js": "/Recipes/static/js/main.52a084cd.js",
+    "static/media/dumpling.svg": "/Recipes/static/media/dumpling.f1fa52f8e2f44c29603f5ae65b8aa681.svg",
+    "static/media/pork.svg": "/Recipes/static/media/pork.a8da4c8d62b337e725a474a2b17b2cde.svg",
+    "static/media/pasta.svg": "/Recipes/static/media/pasta.35ced5d0fa89d0264f83e7f1a4630d56.svg",
+    "static/media/potato.svg": "/Recipes/static/media/potato.f9928b64397f9eb9cd2bf8d8793554f6.svg",
+    "static/media/salad.svg": "/Recipes/static/media/salad.b641dc43c2f6e55dbb1b08288282608e.svg",
+    "static/media/chicken.svg": "/Recipes/static/media/chicken.4722f0d92f76da3450358aed05d0fa8c.svg",
+    "static/media/lamb.svg": "/Recipes/static/media/lamb.7e574b4273937b40df0aabfd29c93591.svg",
+    "static/media/rice.svg": "/Recipes/static/media/rice.8350d8f3781dcc8b0d76aa9193539d3b.svg",
+    "static/media/person.svg": "/Recipes/static/media/person.486a92a89bf262f3fbb62d8daa95e2a0.svg",
+    "static/media/noodle.svg": "/Recipes/static/media/noodle.9b9f0df027f3ca410e163e629698207f.svg",
+    "static/media/pizza.svg": "/Recipes/static/media/pizza.12af5387f3419318f88013be8e54339e.svg",
+    "static/media/beef.svg": "/Recipes/static/media/beef.31c06ed2b1092b18b1f1b1d300939297.svg",
+    "static/media/wanted.svg": "/Recipes/static/media/wanted.2457c09710229bf7f34d328ec5f235d2.svg",
+    "static/media/burger.svg": "/Recipes/static/media/burger.5a4f83f44b85fd728334e0eae79bc747.svg",
+    "static/media/DELETE.svg": "/Recipes/static/media/DELETE.fcac02b46b5278af56e991aeb7415fdc.svg",
+    "static/media/BACK.svg": "/Recipes/static/media/BACK.0eafc0019f8852c0e4d7a7950044199b.svg",
+    "static/media/fangdajing.svg": "/Recipes/static/media/fangdajing.4b8d8fe81022a8149a73dc86a46cd6c0.svg",
+    "index.html": "/Recipes/index.html",
+    "static/media/CLICK.svg": "/Recipes/static/media/CLICK.d6626b26fddfc2b77cfdf7aed1fb4112.svg",
+    "main.52a084cd.js.map": "/Recipes/static/js/main.52a084cd.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.52a084cd.js"
+  ]
+}
