@@ -163,13 +163,13 @@ const NavBar: React.FC<props> = ({ login }) => {
                                 </button>
                             </Link>}
                         </Form>}
-                        {width > 574 && login.status !== 'success' && <Nav className='login'>
+                        {width > 574 && login.status !== 'ok' && <Nav className='login'>
                             <Link id='log' to="/login">Sign In</Link> |
                             <Link id='log' to="/register">
                                 Sign Up
                             </Link>
                         </Nav>}
-                        {width > 574 && login.status === 'success' && <Nav className='login'>
+                        {width > 574 && login.status === 'ok' && <Nav className='login'>
                             <Link to={`/user/${login.username}`}><img style={{ filter: 'invert(1)', width: '35px' }} src={person} alt={login.username}></img></Link>
                             <Link id='log' to={`/user/${login.username}`}><div style={{ marginLeft: '5px' }}>Hi, {login.username}</div></Link>
                         </Nav>}

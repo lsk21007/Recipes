@@ -1,6 +1,6 @@
 interface loginType {
     status?: string;
-    email?: string;
+    username?: string;
     follow?:string[]
     TODO?: todoType[];
     DONE?: todoType[]

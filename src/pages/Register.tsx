@@ -82,7 +82,7 @@ const Register: React.FC<props> = ({ login, setLogin }) => {
   }
 
   useEffect(() => {
-    if (login.status === 'success') {
+    if (login.status === 'ok') {
       login && navigate('/')
     }
   }, [login])
