@@ -10,8 +10,7 @@ app.use(express.urlencoded({ extended: false }));
 
 const jwt = require("jsonwebtoken");
 
-const JWT_SECRET =
-  "randomnumber";
+const JWT_SECRET = "randomnumber";
 
 const mongoUrl =
   "mongodb+srv://Lawrence:wwwqe123@cluster0.sbj7x.mongodb.net/recipesUserDB";
@@ -28,28 +27,33 @@ mongoose
 require("./userModel");
 
 const User = mongoose.model("UserInfo");
+
 app.post("/register", async (req, res) => {
   const { email, password } = req.body;
-
   const encryptedPassword = await bcrypt.hash(password, 10);
+  const username = email.split("@")[0];
+
   try {
     const oldUser = await User.findOne({ email });
 
     if (oldUser) {
       return res.json({ error: "User Exists" });
     }
+
     await User.create({
       email,
       password: encryptedPassword,
     });
-    res.send({ status: "ok" });
+    res.send({ status: "ok", username: username });
   } catch (error) {
+    console.log(error);
     res.send({ status: "error" });
   }
 });
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
+  const username = email.split("@")[0];
 
   const user = await User.findOne({ email });
   if (!user) {
@@ -61,12 +65,12 @@ app.post("/login", async (req, res) => {
     });
 
     if (res.status(201)) {
-      return res.json({ status: "ok", data: token });
+      return res.json({ status: "ok", data: token, username: username });
     } else {
       return res.json({ error: "error" });
     }
   }
-  res.json({ status: "error", error: "InvAlid Password" });
+  res.json({ status: "error", error: "InvAlid Password", username: username });
 });
 
 // app.post("/userData", async (req, res) => {
@@ -94,9 +98,9 @@ app.post("/login", async (req, res) => {
 //   } catch (error) {}
 // });
 
-// app.listen(8080, () => {
-//   console.log("Server Started");
-// });
+app.listen(8080, () => {
+  console.log("Server Started");
+});
 
 // app.post("/forgot-password", async (req, res) => {
 //     const { email } = req.body;
@@ -117,14 +121,14 @@ app.post("/login", async (req, res) => {
 //           pass: "rmdklolcsmswvyfw",
 //         },
 //       });
-  
+
 //       var mailOptions = {
 //         from: "youremail@gmail.com",
 //         to: "thedebugarena@gmail.com",
 //         subject: "Password Reset",
 //         text: link,
 //       };
-  
+
 //       transporter.sendMail(mailOptions, function (error, info) {
 //         if (error) {
 //           console.log(error);
@@ -135,7 +139,7 @@ app.post("/login", async (req, res) => {
 //       console.log(link);
 //     } catch (error) {}
 //   });
-  
+
 //   app.get("/reset-password/:id/:token", async (req, res) => {
 //     const { id, token } = req.params;
 //     console.log(req.params);
@@ -152,11 +156,11 @@ app.post("/login", async (req, res) => {
 //       res.send("Not Verified");
 //     }
 //   });
-  
+
 //   app.post("/reset-password/:id/:token", async (req, res) => {
 //     const { id, token } = req.params;
 //     const { password } = req.body;
-  
+
 //     const oldUser = await User.findOne({ _id: id });
 //     if (!oldUser) {
 //       return res.json({ status: "User Not Exists!!" });
@@ -175,7 +179,7 @@ app.post("/login", async (req, res) => {
 //           },
 //         }
 //       );
-  
+
 //       res.render("index", { email: verify.email, status: "verified" });
 //     } catch (error) {
 //       console.log(error);
