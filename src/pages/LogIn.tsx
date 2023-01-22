@@ -76,7 +76,7 @@ const LogIn: React.FC<props> = ({ login, setLogin }) => {
   }
   const handleClick = (e: React.FormEvent) => {
     e.preventDefault();
-    axios.post("http://localhost:8080/db/login", user).then((res) => setLogin(res.data));
+    axios.post("http://localhost:8080/login", user).then((res) => setLogin(res.data));
     setUser({ email: '', password: '' })
   }
 
