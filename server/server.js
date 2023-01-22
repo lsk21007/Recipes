@@ -46,8 +46,7 @@ app.post("/register", async (req, res) => {
     });
     res.send({ status: "ok", username: username });
   } catch (error) {
-    console.log(error);
-    res.send({ status: "error" });
+    res.send({ status: "error", error: "InvAlid Account or Password"  });
   }
 });
 
@@ -70,7 +69,7 @@ app.post("/login", async (req, res) => {
       return res.json({ error: "error" });
     }
   }
-  res.json({ status: "error", error: "InvAlid Password", username: username });
+  res.json({ status: "error", error: "InvAlid Password" });
 });
 
 // app.post("/userData", async (req, res) => {
