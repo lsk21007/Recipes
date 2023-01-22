@@ -157,10 +157,10 @@ const Tobuylist: React.FC<props> = ({ login, setLogin }) => {
   }, []);
 
   useEffect(() => {
-    if (login.username !== '' && (state.todolist.length !== 0 || state.todolist2.length !== 0)) {
-      axios.post('https://recipeweb-api.herokuapp.com/tobuylist', { TODO: state.todolist, DONE: state.todolist2, username: login.username }).then((res) => setLogin((prev) => { return { ...prev, TODO: res.data.TODO, DONE: res.data.DONE } }))
+    if (login.email !== '' && (state.todolist.length !== 0 || state.todolist2.length !== 0)) {
+      axios.post('https://recipeweb-api.herokuapp.com/tobuylist', { TODO: state.todolist, DONE: state.todolist2, email: login.email }).then((res) => setLogin((prev) => { return { ...prev, TODO: res.data.TODO, DONE: res.data.DONE } }))
     }
-  }, [state, login.username, setLogin])
+  }, [state, login.email, setLogin])
 
   useEffect(() => {
     if (state?.modelOpen) {

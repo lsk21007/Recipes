@@ -63,8 +63,8 @@ interface props {
 const LogIn: React.FC<props> = ({ login, setLogin }) => {
   const navigate = useNavigate();
   const [height, setHeight] = useState<string>((window.innerHeight * 0.8).toString());
-  const [user, setUser] = useState<{ username: string, password: string }>({
-    username: '',
+  const [user, setUser] = useState<{ email: string, password: string }>({
+    email: '',
     password: ''
   })
   const [submit, setSubmit] = useState<boolean | string>(false);
@@ -72,12 +72,12 @@ const LogIn: React.FC<props> = ({ login, setLogin }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLogin((prev) => { return { ...prev, status: 'none' } })
-    setUser((prev: { username: string, password: string }) => { return { ...prev, [name]: value } })
+    setUser((prev: { email: string, password: string }) => { return { ...prev, [name]: value } })
   }
   const handleClick = (e: React.FormEvent) => {
     e.preventDefault();
-    axios.post("https://recipeweb-api.herokuapp.com/login", user).then((res) => setLogin(res.data));
-    setUser({ username: '', password: '' })
+    axios.post("http://localhost:8080/db/login", user).then((res) => setLogin(res.data));
+    setUser({ email: '', password: '' })
   }
 
   useEffect(() => {
@@ -92,7 +92,7 @@ const LogIn: React.FC<props> = ({ login, setLogin }) => {
   }, [height])
 
   useEffect(() => {
-    if (user.username !== '' && user.password !== '') {
+    if (user.email !== '' && user.password !== '') {
       setSubmit(true);
     } else {
       setSubmit(false);
@@ -106,10 +106,10 @@ const LogIn: React.FC<props> = ({ login, setLogin }) => {
           <h2 style={{ fontWeight: 'bold' }}>Log In</h2>
           <p>Other chefs are waiting for you !</p>
           <div>
-            <input onChange={handleChange} type='text' value={user.username} name='username' placeholder='Username*'></input>
+            <input onChange={handleChange} type='text' value={user.email} name='email' placeholder='Email*'></input>
           </div>
           <input onChange={handleChange} type='password' value={user.password} name='password' placeholder='Password*'></input>
-          {login.status === 'Username or password incorrect.' && <p style={{ color: 'red' }}>Username or password incorrect.</p>}
+          {login.status === 'Email or password incorrect.' && <p style={{ color: 'red' }}>Email or password incorrect.</p>}
           <div style={{ display: 'flex', justifyContent: 'center', margin: '10px 0' }}>
             {submit ? <button onClick={handleClick} className='button'><div className='text'>SIGN IN</div></button> :
               <button disabled className='button-disable'><div className='text-disable'>SIGN IN</div></button>}
