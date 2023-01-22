@@ -7,13 +7,14 @@ app.use(cors());
 const bcrypt = require("bcryptjs");
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
+const port = process.env.PORT || 8080;
 
 const jwt = require("jsonwebtoken");
 
 const JWT_SECRET = "randomnumber";
 
 const mongoUrl =
-  "mongodb+srv://";
+  "mongodb+srv://Lawrence:wwwqe123@cluster0.sbj7x.mongodb.net/recipesUserDB";
 
 mongoose
   .connect(mongoUrl, {
@@ -46,7 +47,7 @@ app.post("/register", async (req, res) => {
     });
     res.send({ status: "ok", username: username });
   } catch (error) {
-    res.send({ status: "error", error: "InvAlid Account or Password"  });
+    res.send({ status: "error", error: "InvAlid Account or Password" });
   }
 });
 
@@ -97,7 +98,7 @@ app.post("/login", async (req, res) => {
 //   } catch (error) {}
 // });
 
-app.listen(8080, () => {
+app.listen(port, () => {
   console.log("Server Started");
 });
 

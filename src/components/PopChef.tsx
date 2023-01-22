@@ -11,6 +11,7 @@ const Wrapper = styled.div`
 }
 .chefPhoto{
     width:60px;
+    height:60px;
     border-radius:8px;
     margin-right:10px
 }

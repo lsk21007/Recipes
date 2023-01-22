@@ -1,0 +1,20 @@
+.error {
+  font-size: 70px;
+}
+.error-layout {
+  height: 87vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+@media screen and (max-width: 840px) {
+  .error {
+    font-size: 40px;
+  }
+}
+@media screen and (max-width: 470px) {
+  .error {
+    font-size: 30px;
+  }
+}

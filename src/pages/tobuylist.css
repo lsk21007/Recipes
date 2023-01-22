@@ -1,0 +1,63 @@
+#tobuylist-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tobuylist-area {
+  margin: 40px;
+}
+.tobuylist-input {
+  width: 500px;
+  height: 40px;
+  padding: 3px;
+  border-radius: 5px;
+  margin: 10px;
+}
+.tobuylist-button {
+  background-color: black;
+  border-radius: 5px;
+  height: 40px;
+  color: white;
+  width: 80px;
+  border: 0;
+}
+.tobuylist-button:hover {
+  font-weight: bold;
+}
+.tobuylist-paragrah {
+  margin: 0;
+}
+.tobuylist-img {
+  width: 30px;
+}
+#tobuylist-box {
+  padding: 5px;
+  margin-bottom: 0;
+}
+.tobuylist-nav {
+  border: none;
+  font-weight: bold;
+  margin: 8px 5px 8px 5px;
+  padding: 1px 10px 1px 10px;
+  font-size: 20px;
+}
+.tobuylist-h4 {
+  margin-right: 10%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media screen and (max-width: 768px) {
+  .tobuylist-input {
+    width: 300px;
+  }
+}
+@media screen and (max-width: 519px) {
+  .tobuylist-input {
+    width: 200px;
+  }
+  .tobuylist-nav {
+    font-size: 10px;
+    margin: 5px 5px 5px 5px;
+  }
+}

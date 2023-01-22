@@ -4,56 +4,10 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import loginType from '../typings/UserToken';
+import "./login.css"
 
 const Wrapper = styled.div`
-  .login-container{
-    margin:0 40px 70px 40px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  input{
-    margin:5px 0 5px;
-    width:300px;
-    height:40px;
-    padding:3px;
-    border-radius:5px;
-  }
-  a{
-    text-decoration:none;
-    font-weight:bold;
-  }
-  .button{
-    height:30px;
-    border-width:1px;
-    border-radius:5px;
-    border-color:black;
-    background-color:black;
-    color:white
-}
-.button-disable{
-  height:30px;
-  border-width:0;
-  border-radius:5px;
-  border-color:grey;
-  background-color:grey;
-  color:white;
-  width:300px;
-}
-.button:hover{
-  background-color:white;
-  color:black
-}
-.text{
-    font-weight:bold;
-    width:300px;
-}
-img{
-  z-index:-1
-}
-p{
-  margin-bottom:5px
-}
+  
 `
 interface props {
   login: loginType;
@@ -76,7 +30,7 @@ const LogIn: React.FC<props> = ({ login, setLogin }) => {
   }
   const handleClick = (e: React.FormEvent) => {
     e.preventDefault();
-    axios.post("http://localhost:8080/login", user).then((res) => setLogin(res.data));
+    axios.post("https://recipes-server.onrender.com/login", user).then((res) => setLogin(res.data));
     setUser({ email: '', password: '' })
   }
 
@@ -111,8 +65,8 @@ const LogIn: React.FC<props> = ({ login, setLogin }) => {
           <input onChange={handleChange} type='password' value={user.password} name='password' placeholder='Password*'></input>
           {login.status === 'Email or password incorrect.' && <p style={{ color: 'red' }}>Email or password incorrect.</p>}
           <div style={{ display: 'flex', justifyContent: 'center', margin: '10px 0' }}>
-            {submit ? <button onClick={handleClick} className='button'><div className='text'>SIGN IN</div></button> :
-              <button disabled className='button-disable'><div className='text-disable'>SIGN IN</div></button>}
+            {submit ? <button onClick={handleClick} className='login-button'><div className='login-text'>SIGN IN</div></button> :
+              <button disabled className='login-button-disable'><div className='login-text-disable'>SIGN IN</div></button>}
           </div>
           <hr style={{ margin: '20px' }}></hr>
           <div style={{ display: 'flex', justifyContent: 'center' }}>

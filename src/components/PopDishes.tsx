@@ -29,6 +29,7 @@ h2{
 }
 .content{
   // white-space: nowrap; 
+  font-weight:normal;
   overflow: hidden;
   text-overflow: ellipsis; 
   color:black;

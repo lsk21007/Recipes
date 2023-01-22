@@ -1,0 +1,72 @@
+#chef-porfolio-center{
+  display:flex;
+  justify-content:center;
+  color:black;
+}
+.chef-porfolio-photo{
+  border-radius:50%;
+  border:solid;
+  border-width: 20px;
+  border-color: white;
+  width:280px;
+  height:280px;
+}
+.chef-porfolio-info{
+  position:absolute;
+  width:800px;
+  height:28%;
+  border:3px solid;
+  margin-top:150px;
+  z-index: -1;
+}
+.chef-porfolio-text{
+  display:flex;
+  justify-content:center;
+  padding:10px 10px 0 10px;
+  font-size:40px;
+  font-weight:bold
+}
+.chef-porfolio-recipes{
+  width:800px;
+  font-size:30px;
+  font-weight:bold;
+  margin-bottom:20px
+}
+.chef-porfolio-card{
+  width:300px;
+  margin-bottom:30px
+}
+a{
+  text-decoration:none
+}
+.chef-porfolio-dish{
+  width:299px;
+  height:200px;
+  object-fit: cover;
+}
+@media screen and (max-width:992px){
+  .chef-porfolio-info{
+      width:400px
+  }
+  .chef-porfolio-recipes{
+      width:400px
+  }
+}
+@media screen and (max-width:576px){
+  .chef-porfolio-info{
+      width:350px;
+      height:170px
+  }
+  .chef-porfolio-recipes{
+      width:350px
+  }
+  .chef-porfolio-recipe-container{
+      display:flex;
+      justify-content:center;
+      margin-bottom:40px
+  }
+  .chef-porfolio-photo{
+      width:200px;
+      height:200px;
+  }
+}

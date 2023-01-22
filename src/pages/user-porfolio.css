@@ -1,0 +1,70 @@
+#user-porfolio-center{
+  display:flex;
+  justify-content:center;
+  color:black;
+}
+.user-porfolio-photo{
+  border-radius:50%;
+  width:280px;
+  height:280px;
+  background-color:white;
+}
+.user-porfolio-info{
+  position:absolute;
+  width:800px;
+  height:28%;
+  border:3px solid;
+  margin-top:150px;
+  z-index: -1;
+}
+.user-porfolio-text{
+  display:flex;
+  justify-content:center;
+  padding:10px 10px 0 10px;
+  font-size:40px;
+  font-weight:bold
+}
+.user-porfolio-recipes{
+  width:800px;
+  font-size:30px;
+  font-weight:bold;
+  margin-bottom:20px
+}
+.user-porfolio-card{
+  width:300px;
+  margin-bottom:30px
+}
+a{
+  text-decoration:none
+}
+.user-porfolio-dish{
+  width:299px;
+  height:200px;
+  object-fit: cover;
+}
+@media screen and (max-width:992px){
+  .user-porfolio-info{
+      width:400px
+  }
+  .user-porfolio-recipes{
+      width:400px
+  }
+}
+@media screen and (max-width:576px){
+  .user-porfolio-info{
+      width:350px;
+      height:170px
+  }
+  .user-porfolio-recipes{
+      width:350px
+  }
+  .user-porfolio-recipe-container{
+      display:flex;
+      justify-content:center;
+      margin-bottom:40px
+  }
+  .user-porfolio-photo{
+      width:200px;
+      height:200px;
+  }
+}
