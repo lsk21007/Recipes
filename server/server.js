@@ -13,7 +13,7 @@ const jwt = require("jsonwebtoken");
 const JWT_SECRET = "randomnumber";
 
 const mongoUrl =
-  "mongodb+srv://Lawrence:wwwqe123@cluster0.sbj7x.mongodb.net/recipesUserDB";
+  "mongodb+srv://";
 
 mongoose
   .connect(mongoUrl, {
