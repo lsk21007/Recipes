@@ -1,0 +1,21 @@
+.global-btn{
+    height:30px;
+    border-width:1px;
+    border-radius:5px;
+    border-color:grey;
+    background-color:white;
+}
+.global-btn .btn-text{
+    margin-left:10px;
+    margin-right:10px;
+}
+.global-btn:hover{
+    background-color:black;
+    color:white
+}
+.btn-text{
+    max-width:300px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}

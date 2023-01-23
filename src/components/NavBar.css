@@ -1,0 +1,81 @@
+.navbar-logo {
+  font-size: 40px;
+  font-weight: bold;
+}
+#navbar-item {
+  margin-right: 10px;
+}
+.navbar-container {
+  display: flex;
+}
+#navbar-responsive-navbar-nav {
+  justify-content: center;
+}
+.navbar-right {
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  font-weight: normal;
+  color: black;
+}
+input:focus::-webkit-input-placeholder {
+  opacity: 0;
+}
+input:focus::-moz-placeholder {
+  opacity: 0;
+}
+
+input:focus:-ms-input-placeholder {
+  opacity: 0;
+}
+
+input:focus:-moz-placeholder {
+  opacity: 0;
+}
+a {
+  text-decoration: none;
+}
+.navbar-left {
+  display: flex;
+  width: 150px;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  background-color: white;
+}
+#navbar-log {
+  padding: 0 10px 0 10px;
+  color: #a1a1a1;
+}
+#navbar-log:hover {
+  color: #b3b3b3;
+}
+.navbar-left a {
+  color: black;
+}
+.navbar-right-up {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin-right: 30px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.navbar-login {
+  position: relative;
+  left: 200px;
+  color: grey;
+  align-items: center;
+}
+@media screen and (max-width: 1300px) {
+  .navbar-login {
+    left: 60px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .navbar-small-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

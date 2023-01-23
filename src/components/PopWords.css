@@ -1,0 +1,42 @@
+.pop-words-grey{
+    background-color:#F1F1F1;
+    display:flex;
+}
+a{
+    text-decoration:none
+}
+button{
+    margin:10px;
+}
+.pop-words-img{
+    width:80px;
+    height:70px;
+}
+.pop-words-text{
+    font-size:15px;
+    color:black;
+    display:flex;
+    justify-content:center;
+}
+.pop-words-container{
+    display:flex;
+    justify-content:center;
+}
+.more{
+    position:absolute;
+    right:0;
+    top:30%;
+    font-weight:bold;
+}
+@media screen and (max-width:768px){
+    .pop-words-head{
+      margin    :4%;
+      display:flex;
+      justify-content:center;
+    }
+    h2{
+      font-size:20px;
+      position:relative;
+      margin:0
+    }
+  }

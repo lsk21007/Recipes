@@ -1,0 +1,21 @@
+.pop-area-inside{
+    display:flex;
+    margin:1.5%;
+    position:relative;
+    margin-bottom:0px;
+    justify-content:center
+}
+.pop-area-h2{
+    margin-bottom:20px
+}
+.pop-area-right{
+    position:relative;
+}
+.pop-area-left{
+    margin-right:30px
+}
+@media screen and (max-width:768px){
+    .pop-area-h2{
+        margin-bottom:0
+    }
+}

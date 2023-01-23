@@ -1,0 +1,94 @@
+h2 {
+  margin-top: 2%;
+}
+.pop-dishes-dish {
+  display: flex;
+  margin-bottom: 20px;
+  padding-left: 0;
+}
+.pop-dishes-text-container {
+  margin-left: 10px;
+  display: block;
+  margin-top: 5px;
+}
+#pop-dishes-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: black;
+  width: 280px;
+}
+.pop-dishes-content {
+  font-weight: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: black;
+  height: 50px;
+}
+.pop-dishes-img {
+  border-radius: 10px;
+  width: 120px;
+  height: 100px;
+  object-fit: cover;
+}
+.pop-dishes-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+a {
+  text-decoration: none;
+}
+.pop-dishes-head {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.pop-dishes-more {
+  text-decoration: none;
+  position: absolute;
+  right: 0;
+  top: 40%;
+  font-weight: bold;
+}
+@media screen and (max-width: 1400px) {
+  #pop-dishes-text {
+    width: 230px;
+  }
+}
+@media screen and (max-width: 1200px) {
+  #pop-dishes-text {
+    width: 150px;
+  }
+}
+@media screen and (max-width: 992px) {
+  #pop-dishes-text {
+    width: 200px;
+  }
+  .more {
+    top: 0;
+  }
+  .pop-dishes-head {
+    position: relative;
+  }
+}
+@media screen and (max-width: 768px) {
+  #pop-dishes-text {
+    width: 130px;
+  }
+  .pop-dishes-head {
+    margin: 4%;
+    display: flex;
+    justify-content: center;
+  }
+  h2 {
+    font-size: 20px;
+    position: relative;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 576px) {
+  #pop-dishes-text {
+    width: 220px;
+  }
+}

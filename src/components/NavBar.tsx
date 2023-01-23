@@ -1,99 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Navbar, Container, Nav, NavDropdown, Form } from "react-bootstrap";
-import styled from "styled-components";
 import NavRecipe from "../assets/NavRecipe";
 import loginType from "../typings/UserToken";
 import { Link } from "react-router-dom";
 import fangdajing from "../assets/svg/fangdajing.svg";
 import person from "../assets/svg/person.svg";
-
-const Wrapper = styled.div`
-  * {
-    font-weight: bold;
-    font-size: 20px;
-  }
-  .logo {
-    font-size: 40px;
-    font-weight: bold;
-  }
-  #item {
-    margin-right: 10px;
-  }
-  .container {
-    display: flex;
-  }
-  #responsive-navbar-nav {
-    justify-content: center;
-  }
-  .right {
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 150px;
-    font-weight: normal;
-    color: black;
-  }
-  input:focus::-webkit-input-placeholder {
-    opacity: 0;
-  }
-  input:focus::-moz-placeholder {
-    opacity: 0;
-  }
-
-  input:focus:-ms-input-placeholder {
-    opacity: 0;
-  }
-
-  input:focus:-moz-placeholder {
-    opacity: 0;
-  }
-  a {
-    text-decoration: none;
-  }
-  .left {
-    display: flex;
-    width: 150px;
-    align-items: center;
-    justify-content: center;
-    color: black;
-    background-color: white;
-  }
-  #log {
-    padding: 0 10px 0 10px;
-    color: #a1a1a1;
-  }
-  #log:hover {
-    color: #b3b3b3;
-  }
-  .left a {
-    color: black;
-  }
-  .right-up {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    margin-right: 30px;
-    padding-bottom: 10px;
-    padding-top: 10px;
-  }
-  .login {
-    position: relative;
-    left: 200px;
-    color: grey;
-    align-items: center;
-  }
-  @media screen and (max-width: 1300px) {
-    .login {
-      left: 60px;
-    }
-  }
-  @media screen and (max-width: 500px) {
-    .small-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-`;
+import "./NavBar.css"
 
 interface props {
   login: loginType;
@@ -119,28 +31,28 @@ const NavBar: React.FC<props> = ({ login }) => {
   }, []);
 
   return (
-    <Wrapper style={{ position: "sticky", top: 0, zIndex: 1 }}>
+    <div style={{ position: "sticky", top: 0, zIndex: 1 }}>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Link id="log" to="/" className="logo" style={{ color: "white" }}>
+          <Link id="log" to="/" className="navbar-logo" style={{ color: "white" }}>
             Recipes
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="nav-left">
-              <Link id="log" to="/" style={{ padding: "8px" }}>
+          <Navbar.Collapse id="navbar-responsive-navbar-nav">
+            <Nav className="navbar-nav-left">
+              <Link id="navbar-log" to="/" style={{ padding: "8px" }}>
                 Home
               </Link>
               <NavDropdown
                 style={{ paddingLeft: "8px" }}
                 title="Recipes"
-                id="collasible-nav-dropdown"
+                id="navbar-collasible-nav-dropdown"
               >
-                <div className="small-container">
+                <div className="navbar-small-container">
                   {recipe.map((i, index) => {
                     return (
                       <div key={index} className="container">
-                        <NavDropdown.Item className="left">
+                        <NavDropdown.Item className="navbar-left">
                           <Link to={`/search/${cuisine[index]}`}>
                             <div style={{ fontSize: "15px" }}>
                               {cuisine[index]}
@@ -148,14 +60,14 @@ const NavBar: React.FC<props> = ({ login }) => {
                           </Link>
                         </NavDropdown.Item>
                         {width > 500 && (
-                          <div className="right-up">
+                          <div className="navbar-right-up">
                             {i.slice(1).map((j, jndex) => {
                               return (
                                 <Link key={jndex} to={`/recipes/${j}`}>
                                   <NavDropdown.Item
                                     style={{ backgroundColor: "white" }}
                                   >
-                                    <div className="right">{j}</div>
+                                    <div className="navbar-right">{j}</div>
                                   </NavDropdown.Item>
                                 </Link>
                               );
@@ -228,6 +140,7 @@ const NavBar: React.FC<props> = ({ login }) => {
                     style={{
                       backgroundColor: "grey",
                       borderRadius: "0px 5px 5px 0px",
+                      margin:"5px 0 5px",
                     }}
                     to={`/search/all`}
                   >
@@ -274,18 +187,18 @@ const NavBar: React.FC<props> = ({ login }) => {
               </Form>
             )}
             {width > 574 && login.status !== "ok" && (
-              <Nav className="login">
-                <Link id="log" to="/login">
+              <Nav className="navbar-login">
+                <Link id="navbar-log" to="/login">
                   Sign In
                 </Link>{" "}
                 |
-                <Link id="log" to="/register">
+                <Link id="navbar-log" to="/register">
                   Sign Up
                 </Link>
               </Nav>
             )}
             {width > 574 && login.status === "ok" && (
-              <Nav className="login">
+              <Nav className="navbar-login">
                 <Link to={`/user/${login.username}`}>
                   <img
                     style={{ filter: "invert(1)", width: "35px" }}
@@ -293,7 +206,7 @@ const NavBar: React.FC<props> = ({ login }) => {
                     alt={login.username}
                   ></img>
                 </Link>
-                <Link id="log" to={`/user/${login.username}`}>
+                <Link id="navbar-log" to={`/user/${login.username}`}>
                   <div style={{ marginLeft: "5px" }}>Hi, {login.username}</div>
                 </Link>
               </Nav>
@@ -301,7 +214,7 @@ const NavBar: React.FC<props> = ({ login }) => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </Wrapper>
+    </div>
   );
 };
 
