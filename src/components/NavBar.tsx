@@ -35,13 +35,13 @@ const NavBar: React.FC<props> = ({ login }) => {
       style={{
         position: "sticky",
         top: 0,
-        zIndex: 1
+        zIndex: 1,
       }}
     >
       <Navbar
         style={{
           display: "flex",
-          justifyContent: "center"
+          justifyContent: "center",
         }}
         collapseOnSelect
         expand="lg"
@@ -71,24 +71,25 @@ const NavBar: React.FC<props> = ({ login }) => {
                 <div className="navbar-small-container">
                   {recipe.map((i, index) => {
                     return (
-                      <div key={index} className="container">
-                        <NavDropdown.Item className="navbar-left">
-                          <Link to={`/search/${cuisine[index]}`}>
-                            <div style={{ fontSize: "15px" }}>
-                              {cuisine[index]}
-                            </div>
-                          </Link>
-                        </NavDropdown.Item>
+                      <div key={index} className="navbar-container">
+                        <Link
+                          to={`/search/${cuisine[index]}`}
+                          className="navbar-left"
+                        >
+                          <div style={{ fontSize: "15px", fontWeight: "bold" }}>
+                            {cuisine[index]}
+                          </div>
+                        </Link>
                         {width > 500 && (
                           <div className="navbar-right-up">
                             {i.slice(1).map((j, jndex) => {
                               return (
-                                <Link key={jndex} to={`/recipes/${j}`}>
-                                  <NavDropdown.Item
-                                    style={{ backgroundColor: "white" }}
-                                  >
-                                    <div className="navbar-right">{j}</div>
-                                  </NavDropdown.Item>
+                                <Link
+                                  key={jndex}
+                                  to={`/search/${j}`}
+                                  style={{ backgroundColor: "white" }}
+                                >
+                                  <div className="navbar-right">{j}</div>
                                 </Link>
                               );
                             })}
@@ -119,17 +120,17 @@ const NavBar: React.FC<props> = ({ login }) => {
                     <hr style={{ width: "300px" }}></hr>
                   </div>
                 )}
-                <NavDropdown.Item style={{ backgroundColor: "white" }}>
-                  <Link
-                    style={{
-                      display: "flex",
-                      justifyContent: "center",
-                      fontSize: "15px",
-                    }}
-                    to="/all"
-                  >
-                    See All
-                  </Link>
+                <NavDropdown.Item
+                  href="/all"
+                  style={{
+                    backgroundColor: "white",
+                    display: "flex",
+                    justifyContent: "center",
+                    fontSize: "15px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  See All
                 </NavDropdown.Item>
               </NavDropdown>
               <Link
