@@ -6,7 +6,7 @@ import CLICK from "../assets/svg/CLICK.svg";
 import loginType from "../typings/UserToken";
 import Banner from "../components/Banner";
 import axios from "axios";
-import "./tobuylist.css"
+import "./tobuylist.css";
 
 interface listType {
   todolist: { todo: string; id: string }[];
@@ -26,6 +26,8 @@ const list: listType = {
   modelOpen: false,
   content: "",
 };
+
+const BUTTONS = ["TODO", "DONE", "ALL"];
 
 const reducer = (
   state: listType,
@@ -107,20 +109,8 @@ const reducer = (
 
 const Tobuylist: React.FC<props> = ({ login, setLogin }) => {
   const [input, setInput] = useState<string>("");
-  const [open, setOpen] = useState<boolean[]>([true, false]);
-  const [all, setAll] = useState<boolean>(false);
+  const [open, setOpen] = useState<number>(0);
   const [state, dispatch] = useReducer(reducer, list);
-
-  const handleOpen = (e: any) => {
-    let key = e.target.name;
-    if (key === "1") {
-      setOpen([true, false]);
-    } else if (key === "2") {
-      setOpen([false, true]);
-    } else {
-      setOpen([true, true]);
-    }
-  };
 
   const handleClick = (e: React.FormEvent) => {
     e.preventDefault();
@@ -138,7 +128,6 @@ const Tobuylist: React.FC<props> = ({ login, setLogin }) => {
     const turnOn = async () => {
       state.todolist = await login.TODO;
       state.todolist2 = await login.DONE;
-      await setAll(true);
     };
     turnOn();
   }, []);
@@ -169,6 +158,125 @@ const Tobuylist: React.FC<props> = ({ login, setLogin }) => {
       }, 1000);
     }
   }, [state?.modelOpen]);
+
+  const selectList = () => {
+    switch (open) {
+      case 0:
+        return selectTodo();
+      case 1:
+        return selectDone();
+      case 2:
+        return <>{selectTodo() || selectDone()}</>;
+      default:
+        break;
+    }
+  };
+
+  const selectTodo = () => {
+    return (
+      <div>
+        {state?.todolist.map(
+          (i: { todo: string; id: string }, index: number) => {
+            return (
+              <div key={index}>
+                <hr style={{ margin: "0 0 5px 0" }}></hr>
+                <div
+                  id="tobuylist-center"
+                  style={{
+                    position: "relative",
+                    paddingBottom: "5px",
+                    justifyContent: "left",
+                  }}
+                >
+                  <img
+                    onClick={() => {
+                      dispatch({ type: "FINISH", id: i.id });
+                    }}
+                    className="tobuylist-img"
+                    style={{ marginLeft: "2%" }}
+                    id="box"
+                    src={CLICK}
+                    alt="click"
+                  ></img>
+                  <h4
+                    className="tobuylist-h4"
+                    style={{ marginLeft: "2%" }}
+                    id="box"
+                  >
+                    {i.todo}
+                  </h4>
+                  <img
+                    onClick={() => {
+                      dispatch({ type: "DELETE", id: i.id });
+                    }}
+                    className="tobuylist-img"
+                    style={{ right: "2%", position: "absolute" }}
+                    id="tobuylist-box"
+                    src={DELETE}
+                    alt="delete"
+                  ></img>
+                </div>
+              </div>
+            );
+          }
+        )}
+      </div>
+    );
+  };
+
+  const selectDone = () => {
+    return (
+      <div>
+        {state?.todolist2.map(
+          (i: { todo: string; id: string }, index: number) => {
+            return (
+              <div key={index}>
+                <hr style={{ margin: "0 0 5px 0" }}></hr>
+                <div
+                  id="tobuylist-center"
+                  style={{
+                    position: "relative",
+                    paddingBottom: "5px",
+                    justifyContent: "left",
+                  }}
+                >
+                  <img
+                    onClick={() => {
+                      dispatch({ type: "BACK", id: i.id });
+                    }}
+                    className="tobuylist-img"
+                    style={{ marginLeft: "2%" }}
+                    id="box"
+                    src={BACK}
+                    alt="back"
+                  ></img>
+                  <h4
+                    style={{
+                      marginLeft: "2%",
+                      textDecoration: "line-through",
+                    }}
+                    id="box"
+                  >
+                    {i.todo}
+                  </h4>
+                  <img
+                    onClick={() => {
+                      dispatch({ type: "DELETE", id: i.id });
+                    }}
+                    className="tobuylist-img"
+                    style={{ right: "2%", position: "absolute" }}
+                    id="box"
+                    src={DELETE}
+                    alt="delete"
+                  ></img>
+                </div>
+              </div>
+            );
+          }
+        )}
+      </div>
+    );
+  };
 
   return (
     <>
@@ -216,140 +324,22 @@ const Tobuylist: React.FC<props> = ({ login, setLogin }) => {
               marginRight: "2%",
             }}
           >
-            <button
-              onClick={handleOpen}
-              name="1"
-              className="tobuylist-nav"
-              style={{
-                backgroundColor: open[0] && !open[1] ? "grey" : "#F1F1F1",
-              }}
-            >
-              {" "}
-              TODO
-            </button>
-            <button
-              onClick={handleOpen}
-              name="2"
-              className="tobuylist-nav"
-              style={{
-                backgroundColor: !open[0] && open[1] ? "grey" : "#F1F1F1",
-              }}
-            >
-              DONE
-            </button>
-            <button
-              onClick={handleOpen}
-              name="3"
-              className="tobuylist-nav"
-              style={{
-                backgroundColor: open[0] && open[1] ? "grey" : "#F1F1F1",
-              }}
-            >
-              ALL
-            </button>
+            {BUTTONS.map((btn, index) => {
+              return (
+                <button
+                  onClick={() => setOpen(index)}
+                  name={index.toString()}
+                  className="tobuylist-nav"
+                  style={{
+                    backgroundColor: index === open ? "grey" : "#F1F1F1",
+                  }}
+                >
+                  {btn}
+                </button>
+              );
+            })}
           </div>
-          {all && (
-            <span>
-              {open[0] && (
-                <div>
-                  {state?.todolist.map(
-                    (i: { todo: string; id: string }, index: number) => {
-                      return (
-                        <div key={index}>
-                          <hr style={{ margin: "0 0 5px 0" }}></hr>
-                          <div
-                            id="tobuylist-center"
-                            style={{
-                              position: "relative",
-                              paddingBottom: "5px",
-                              justifyContent: "left",
-                            }}
-                          >
-                            <img
-                              className="tobuylist-img"
-                              onClick={() => {
-                                dispatch({ type: "FINISH", id: i.id });
-                              }}
-                              style={{ marginLeft: "2%" }}
-                              id="box"
-                              src={CLICK}
-                              alt="click"
-                            ></img>
-                            <h4
-                              className="tobuylist-h4"
-                              style={{ marginLeft: "2%" }}
-                              id="box"
-                            >
-                              {i.todo}
-                            </h4>
-                            <img
-                              className="tobuylist-img"
-                              onClick={() => {
-                                dispatch({ type: "DELETE", id: i.id });
-                              }}
-                              style={{ right: "2%", position: "absolute" }}
-                              id="box"
-                              src={DELETE}
-                              alt="delete"
-                            ></img>
-                          </div>
-                        </div>
-                      );
-                    }
-                  )}
-                </div>
-              )}
-              {open[1] && (
-                <div>
-                  {state?.todolist2.map(
-                    (i: { todo: string; id: string }, index: number) => {
-                      return (
-                        <div key={index}>
-                        <hr style={{ margin: "0 0 5px 0" }}></hr>
-                          <div
-                            id="tobuylist-center"
-                            style={{
-                              position: "relative",
-                              paddingBottom: "5px",
-                              justifyContent: "left",
-                            }}
-                          >
-                            <img
-                              onClick={() => {
-                                dispatch({ type: "BACK", id: i.id });
-                              }}
-                              style={{ marginLeft: "2%" }}
-                              id="box"
-                              src={BACK}
-                              alt="back"
-                            ></img>
-                            <h4
-                              style={{
-                                marginLeft: "2%",
-                                textDecoration: "line-through",
-                              }}
-                              id="box"
-                            >
-                              {i.todo}
-                            </h4>
-                            <img
-                              onClick={() => {
-                                dispatch({ type: "DELETE", id: i.id });
-                              }}
-                              style={{ right: "2%", position: "absolute" }}
-                              id="box"
-                              src={DELETE}
-                              alt="delete"
-                            ></img>
-                          </div>
-                        </div>
-                      );
-                    }
-                  )}
-                </div>
-              )}
-            </span>
-          )}
+          {selectList()}
         </div>
       </Container>
     </>

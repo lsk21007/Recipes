@@ -85,6 +85,7 @@ const Recipe: React.FC = () => {
                       className="recipe-info-step"
                       src={i.image}
                       alt={i.text}
+                      style={{height:"70px"}}
                     ></img>
                     <div className="recipe-info-small-container">
                       <h5 style={{ marginTop: "5px" }}>Step: {index + 1}</h5>
@@ -94,37 +95,6 @@ const Recipe: React.FC = () => {
                 );
               }
             )}
-            <div className="recipe-info-comment-container">
-              <h2 className="recipe-info-comment">Comment</h2>
-              <div style={{ display: "flex", marginBottom: "20px" }}>
-                <textarea
-                  onChange={handleChange}
-                  value={comment}
-                  placeholder="comment"
-                ></textarea>
-                <button onClick={handleClick} className="recipe-info-button">
-                  Submit
-                </button>
-              </div>
-              {comments.map((i: { time: string; comment: string }) => {
-                return (
-                  <div
-                    style={{ display: "flex", marginBottom: "10px" }}
-                    key={i.time}
-                  >
-                    <img
-                      style={{ width: "45px", marginRight: "5px" }}
-                      src={person}
-                      alt="person"
-                    ></img>
-                    <div>
-                      <div>{i.time}</div>
-                      <div style={{ fontWeight: "bold" }}>{i.comment}</div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
           </div>
           {width > 768 && (
             <div className="recipe-info-sidebar">
@@ -132,7 +102,7 @@ const Recipe: React.FC = () => {
               {recipe === "loading" ? null : (
                 <div>
                   {recipes.map((i: Hit, index: number) => (
-                    <div key={index} style={{ marginBottom: "20px" }}>
+                    <div key={index}>
                       <Link to={`/search/${i.recipe.label}`}>
                         <Button content={i.recipe.label}></Button>
                       </Link>
@@ -140,6 +110,41 @@ const Recipe: React.FC = () => {
                   ))}
                 </div>
               )}
+              <div className="recipe-info-comment-container">
+                <h2 className="recipe-info-comment">Comment</h2>
+                <div style={{ display: "flex", marginBottom: "20px" }}>
+                  <textarea
+                    onChange={handleChange}
+                    value={comment}
+                    placeholder="comment"
+                  ></textarea>
+                  <button onClick={handleClick} className="recipe-info-button">
+                    Submit
+                  </button>
+                </div>
+                {comments.map((i: { time: string; comment: string }) => {
+                  return (
+                    <div
+                      style={{ display: "flex", marginBottom: "10px" }}
+                      key={i.time}
+                    >
+                      <img
+                        style={{
+                          width: "45px",
+                          height: "45px",
+                          marginRight: "5px",
+                        }}
+                        src={person}
+                        alt="person"
+                      ></img>
+                      <div>
+                        <div>{i.time}</div>
+                        <div style={{ fontWeight: "bold" }}>{i.comment}</div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           )}
         </div>

@@ -28,10 +28,11 @@
   margin: 0;
 }
 .tobuylist-img {
-  width: 30px;
+  width: 20px;
+  height: 20px;
+  z-index: 1;
 }
 #tobuylist-box {
-  padding: 5px;
   margin-bottom: 0;
 }
 .tobuylist-nav {

@@ -11,7 +11,6 @@
 }
 .recipe-info-sidebar{
     padding:30px;
-    width:20%;
     padding-top:0;
     height:1000px;
 }
@@ -48,7 +47,8 @@ textarea{
     background-color:black;
     color:white;
     font-weight:bold;
-    border-color:black
+    border-color:black;
+    margin:0
 }
 .recipe-info-button:hover{
     background-color:grey;

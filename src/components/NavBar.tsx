@@ -5,7 +5,7 @@ import loginType from "../typings/UserToken";
 import { Link } from "react-router-dom";
 import fangdajing from "../assets/svg/fangdajing.svg";
 import person from "../assets/svg/person.svg";
-import "./NavBar.css"
+import "./NavBar.css";
 
 interface props {
   login: loginType;
@@ -34,7 +34,12 @@ const NavBar: React.FC<props> = ({ login }) => {
     <div style={{ position: "sticky", top: 0, zIndex: 1 }}>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Container>
-          <Link id="log" to="/" className="navbar-logo" style={{ color: "white" }}>
+          <Link
+            id="log"
+            to="/"
+            className="navbar-logo"
+            style={{ color: "white" }}
+          >
             Recipes
           </Link>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -113,7 +118,7 @@ const NavBar: React.FC<props> = ({ login }) => {
                 </NavDropdown.Item>
               </NavDropdown>
               <Link
-                style={{ color: "white", padding: "8px" }}
+                style={{ color: "white", padding: "8px",marginRight:"20px" }}
                 id="item"
                 to="/tobuylist"
               >
@@ -140,7 +145,9 @@ const NavBar: React.FC<props> = ({ login }) => {
                     style={{
                       backgroundColor: "grey",
                       borderRadius: "0px 5px 5px 0px",
-                      margin:"5px 0 5px",
+                      margin: "5px 0 5px",
+                      height: "35px",
+                      width: "40px",
                     }}
                     to={`/search/all`}
                   >
@@ -148,12 +155,17 @@ const NavBar: React.FC<props> = ({ login }) => {
                       style={{
                         backgroundColor: "grey",
                         border: "none",
-                        width: "40px",
                         borderRadius: "0px 5px 5px 0px",
                       }}
                     >
                       <img
-                        style={{ width: "20px", height: "20px" }}
+                        style={{
+                          display:"flex",
+                          justifyContent:"center",
+                          alignItems:"center",
+                          width: "20px",
+                          height: "20px",
+                        }}
                         src={fangdajing}
                         alt="search"
                       />
@@ -177,7 +189,7 @@ const NavBar: React.FC<props> = ({ login }) => {
                       }}
                     >
                       <img
-                        style={{ width: "20px", height : "20px" }}
+                        style={{ width: "20px", height: "20px" }}
                         src={fangdajing}
                         alt="search"
                       />
