@@ -1,48 +1,58 @@
-.login-container{
-    margin:0 40px 70px 40px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  input{
-    margin:5px 0 5px 10px;
-    width:300px;
-    height:40px;
-    padding:3px;
-    border-radius:5px;
-  }
-  a{
-    text-decoration:none;
-    font-weight:bold;
-  }
-  .login-button{
-    height:30px;
-    border-width:1px;
-    border-radius:5px;
-    border-color:black;
-    background-color:black;
-    color:white
+.login-container {
+  margin: 0 40px 70px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.login-button-disable{
-  height:30px;
-  border-width:0;
-  border-radius:5px;
-  border-color:grey;
-  background-color:grey;
-  color:white;
-  width:300px;
+.login-isLoading {
+  height: 70vh;
+  width: 100vw;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 0;
 }
-.login-button:hover{
-  background-color:white;
-  color:black
+input {
+  margin: 5px 0 5px 10px;
+  width: 300px;
+  height: 40px;
+  padding: 3px;
+  border-radius: 5px;
 }
-.login-text{
-    font-weight:bold;
-    width:300px;
+a {
+  text-decoration: none;
+  font-weight: bold;
 }
-img{
-  z-index:-1
+.login-button {
+  height: 30px;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: black;
+  background-color: black;
+  color: white;
 }
-p{
-  margin-bottom:5px
+.login-button-disable {
+  height: 30px;
+  border-width: 0;
+  border-radius: 5px;
+  border-color: grey;
+  background-color: grey;
+  color: white;
+  width: 300px;
+}
+.login-button:hover {
+  background-color: white;
+  color: black;
+}
+.login-text {
+  font-weight: bold;
+  width: 300px;
+}
+img {
+  z-index: -1;
+}
+p {
+  margin-bottom: 5px;
 }

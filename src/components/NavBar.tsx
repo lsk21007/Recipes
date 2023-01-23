@@ -229,7 +229,11 @@ const NavBar: React.FC<props> = ({ login }) => {
               <Nav className="navbar-login">
                 <Link to={`/user/${login.username}`}>
                   <img
-                    style={{ filter: "invert(1)", width: "35px" }}
+                    style={{
+                      filter: "invert(1)",
+                      width: "35px",
+                      height: "35px",
+                    }}
                     src={person}
                     alt={login.username}
                   ></img>
