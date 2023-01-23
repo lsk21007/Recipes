@@ -86,7 +86,7 @@ const Search: React.FC = () => {
                       </Link>
                       <div className="search-text-container">
                         <Link to={`/recipes/${i.recipe.label}`}>
-                          <div id="text" className="title">
+                          <div id="search-text" className="title">
                             {i.recipe.label}
                           </div>
                         </Link>
@@ -94,7 +94,7 @@ const Search: React.FC = () => {
                           <div
                             className="search-content"
                             id="search-text"
-                            style={{ height: "50px" }}
+                            style={{ height: "50px", fontWeight: "normal" }}
                           >
                             {i.recipe.ingredientLines.map(
                               (j: string, jndex: number) => {
@@ -119,11 +119,7 @@ const Search: React.FC = () => {
                 <Container>
                   <Row lg={1} xl={2}>
                     {Category.map((i, index) => (
-                      <Link
-                        key={index}
-                        to={`/search/${i}`}
-                        style={{ marginBottom: "20px" }}
-                      >
+                      <Link key={index} to={`/search/${i}`}>
                         <Button content={i}></Button>
                       </Link>
                     ))}

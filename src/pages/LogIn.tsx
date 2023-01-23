@@ -57,8 +57,8 @@ const LogIn: React.FC<props> = ({ login, setLogin }) => {
     <Wrapper>
       <div className='login-container' style={{ height: height + 'px' }}>
         <div>
-          <h2 style={{ fontWeight: 'bold' }}>Log In</h2>
-          <p>Other chefs are waiting for you !</p>
+          <h2 style={{ fontWeight: "bold", marginLeft: "10px" }}>Log In</h2>
+          <p style={{ marginLeft: "10px" }}>Other chefs are waiting for you !</p>
           <div>
             <input onChange={handleChange} type='text' value={user.email} name='email' placeholder='Email*'></input>
           </div>

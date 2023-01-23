@@ -31,9 +31,24 @@ const NavBar: React.FC<props> = ({ login }) => {
   }, []);
 
   return (
-    <div style={{ position: "sticky", top: 0, zIndex: 1 }}>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-        <Container>
+    <div
+      style={{
+        position: "sticky",
+        top: 0,
+        zIndex: 1
+      }}
+    >
+      <Navbar
+        style={{
+          display: "flex",
+          justifyContent: "center"
+        }}
+        collapseOnSelect
+        expand="lg"
+        bg="dark"
+        variant="dark"
+      >
+        <Container style={{ margin: 0 }}>
           <Link
             id="log"
             to="/"
@@ -118,7 +133,7 @@ const NavBar: React.FC<props> = ({ login }) => {
                 </NavDropdown.Item>
               </NavDropdown>
               <Link
-                style={{ color: "white", padding: "8px",marginRight:"20px" }}
+                style={{ color: "white", padding: "8px", marginRight: "20px" }}
                 id="item"
                 to="/tobuylist"
               >
@@ -160,9 +175,9 @@ const NavBar: React.FC<props> = ({ login }) => {
                     >
                       <img
                         style={{
-                          display:"flex",
-                          justifyContent:"center",
-                          alignItems:"center",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
                           width: "20px",
                           height: "20px",
                         }}
