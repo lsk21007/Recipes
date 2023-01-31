@@ -172,6 +172,43 @@ const Tobuylist: React.FC<props> = ({ login, setLogin }) => {
     }
   };
 
+  const renderItem = (i: { todo: string; id: string }) => {
+    return (
+      <div
+        id="tobuylist-center"
+        style={{
+          position: "relative",
+          paddingBottom: "5px",
+          justifyContent: "left",
+        }}
+      >
+        <img
+          onClick={() => {
+            dispatch({ type: "FINISH", id: i.id });
+          }}
+          className="tobuylist-img"
+          style={{ marginLeft: "2%" }}
+          id="box"
+          src={CLICK}
+          alt="click"
+        ></img>
+        <h4 className="tobuylist-h4" style={{ marginLeft: "2%" }} id="box">
+          {i.todo}
+        </h4>
+        <img
+          onClick={() => {
+            dispatch({ type: "DELETE", id: i.id });
+          }}
+          className="tobuylist-img"
+          style={{ right: "2%", position: "absolute" }}
+          id="tobuylist-box"
+          src={DELETE}
+          alt="delete"
+        ></img>
+      </div>
+    );
+  };
+
   const selectTodo = () => {
     return (
       <div>
@@ -180,42 +217,7 @@ const Tobuylist: React.FC<props> = ({ login, setLogin }) => {
             return (
               <div key={index}>
                 <hr style={{ margin: "0 0 5px 0" }}></hr>
-                <div
-                  id="tobuylist-center"
-                  style={{
-                    position: "relative",
-                    paddingBottom: "5px",
-                    justifyContent: "left",
-                  }}
-                >
-                  <img
-                    onClick={() => {
-                      dispatch({ type: "FINISH", id: i.id });
-                    }}
-                    className="tobuylist-img"
-                    style={{ marginLeft: "2%" }}
-                    id="box"
-                    src={CLICK}
-                    alt="click"
-                  ></img>
-                  <h4
-                    className="tobuylist-h4"
-                    style={{ marginLeft: "2%" }}
-                    id="box"
-                  >
-                    {i.todo}
-                  </h4>
-                  <img
-                    onClick={() => {
-                      dispatch({ type: "DELETE", id: i.id });
-                    }}
-                    className="tobuylist-img"
-                    style={{ right: "2%", position: "absolute" }}
-                    id="tobuylist-box"
-                    src={DELETE}
-                    alt="delete"
-                  ></img>
-                </div>
+                {renderItem(i)}
               </div>
             );
           }
@@ -278,43 +280,48 @@ const Tobuylist: React.FC<props> = ({ login, setLogin }) => {
     );
   };
 
-  return (
-    <>
-      <Banner />
+  const renderInputComponent = () => {
+    return (
+      <div className="tobuylist-area">
+        <div id="tobuylist-center">
+          <h2 style={{ fontWeight: "bold" }}>ToBuyList</h2>
+        </div>
+        {login.status === "none" && (
+          <div id="tobuylist-center">
+            <p className="tobuylist-paragrah">
+              Login to save your to buy list.
+            </p>
+          </div>
+        )}
+        <div id="center">
+          <input
+            className="tobuylist-input"
+            onChange={(e) => setInput(e.target.value)}
+            value={input}
+          ></input>
+          <button
+            className="tobuylist-button"
+            onClick={handleClick}
+            style={{ marginRight: "10px" }}
+          >
+            Submit
+          </button>
+        </div>
+        <div id="tobuylist-center">
+          {state?.modelOpen && <p>{state?.content}</p>}
+        </div>
+      </div>
+    );
+  };
+
+  const renderTodolist = () => {
+    return (
       <Container style={{ height: "770px" }}>
         <div
           id="tobuylist-center"
           style={{ margin: "40px 20px", backgroundColor: "#F1F1F1" }}
         >
-          <div className="tobuylist-area">
-            <div id="tobuylist-center">
-              <h2 style={{ fontWeight: "bold" }}>ToBuyList</h2>
-            </div>
-            {login.status === "none" && (
-              <div id="tobuylist-center">
-                <p className="tobuylist-paragrah">
-                  Login to save your to buy list.
-                </p>
-              </div>
-            )}
-            <div id="center">
-              <input
-                className="tobuylist-input"
-                onChange={(e) => setInput(e.target.value)}
-                value={input}
-              ></input>
-              <button
-                className="tobuylist-button"
-                onClick={handleClick}
-                style={{ marginRight: "10px" }}
-              >
-                Submit
-              </button>
-            </div>
-            <div id="tobuylist-center">
-              {state?.modelOpen && <p>{state?.content}</p>}
-            </div>
-          </div>
+          {renderInputComponent()}
         </div>
         <div style={{ margin: "40px 20px", backgroundColor: "#F1F1F1" }}>
           <div
@@ -342,6 +349,13 @@ const Tobuylist: React.FC<props> = ({ login, setLogin }) => {
           {selectList()}
         </div>
       </Container>
+    );
+  };
+
+  return (
+    <>
+      <Banner />
+      {renderTodolist()}
     </>
   );
 };

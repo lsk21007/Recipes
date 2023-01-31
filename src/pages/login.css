@@ -4,17 +4,7 @@
   align-items: center;
   justify-content: center;
 }
-.login-isLoading {
-  height: 70vh;
-  width: 100vw;
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  z-index: 0;
-}
-input {
+.login-input {
   margin: 5px 0 5px 10px;
   width: 300px;
   height: 40px;

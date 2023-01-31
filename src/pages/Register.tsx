@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import loginType from "../typings/UserToken";
+import Loading from "../components/Loading";
 import "./register.css";
 
 interface props {
@@ -66,44 +67,52 @@ const Register: React.FC<props> = ({ login, setLogin }) => {
     }
   }, [user]);
 
-  return (
-    <div>
-      {isLoading && (
-        <div className="login-isLoading">
-          <img
-            style={{ width: "440px", height: "220px", objectFit: "cover" }}
-            src="https://www.gurujitips.in/wp-content/uploads/2017/06/reduce-bounce-rate-loading-gif.gif"
-            alt="loading"
-          ></img>
-        </div>
-      )}
+  const renderInputFields = () => {
+    return (
+      <>
+        <input
+          className="register-input"
+          onChange={handleChange}
+          type="text"
+          value={user.email}
+          name="email"
+          placeholder="Email*"
+        ></input>
+        <br />
+        <input
+          className="register-input"
+          onChange={handleChange}
+          type="password"
+          value={user.password}
+          name="password"
+          placeholder="Password*"
+        ></input>
+      </>
+    );
+  };
+
+  const renderButton = () => {
+    return submit ? (
+      <button onClick={handleClick} className="register-button">
+        <div className="register-text">SIGN UP</div>
+      </button>
+    ) : (
+      <button disabled className="register-button-disable">
+        <div className="register-text-disable">SIGN UP</div>
+      </button>
+    );
+  };
+
+  const renderRegister = () => {
+    return (
       <div
-        className="login-container"
+        className="register-container"
         style={{ height: height + "px", opacity: isLoading ? 0.5 : 1 }}
       >
         <div>
           <h2 style={{ fontWeight: "bold", marginLeft: "10px" }}>Register</h2>
           <p style={{ marginLeft: "10px" }}>Click button to be a chef !</p>
-          <div>
-            <input
-              style={{ display: "flex", justifyContent: "center" }}
-              className="register-input"
-              onChange={handleChange}
-              type="text"
-              value={user.email}
-              name="email"
-              placeholder="Email*"
-            ></input>
-          </div>
-          <input
-            style={{ display: "flex", justifyContent: "center" }}
-            className="register-input"
-            onChange={handleChange}
-            type="password"
-            value={user.password}
-            name="password"
-            placeholder="Password*"
-          ></input>
+          {renderInputFields()}
           {login.status === "exist" && (
             <p style={{ color: "red" }}>Email exist, try to use another one.</p>
           )}
@@ -114,15 +123,7 @@ const Register: React.FC<props> = ({ login, setLogin }) => {
               margin: "10px 0",
             }}
           >
-            {submit ? (
-              <button onClick={handleClick} className="register-button">
-                <div className="register-text">SIGN UP</div>
-              </button>
-            ) : (
-              <button disabled className="register-button-disable">
-                <div className="register-text-disable">SIGN UP</div>
-              </button>
-            )}
+            {renderButton()}
           </div>
           <hr style={{ margin: "20px" }}></hr>
           <div style={{ display: "flex", justifyContent: "center" }}>
@@ -133,6 +134,13 @@ const Register: React.FC<props> = ({ login, setLogin }) => {
           </div>
         </div>
       </div>
+    );
+  };
+
+  return (
+    <div>
+      {isLoading && <Loading />}
+      {renderRegister()}
     </div>
   );
 };

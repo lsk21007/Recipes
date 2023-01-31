@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import loginType from "../typings/UserToken";
+import Loading from "../components/Loading";
 import "./login.css";
 
 interface props {
@@ -66,17 +67,44 @@ const LogIn: React.FC<props> = ({ login, setLogin }) => {
     }
   }, [user]);
 
-  return (
-    <div>
-      {isLoading && (
-        <div className="login-isLoading">
-          <img
-            style={{ width: "440px", height: "220px", objectFit: "cover" }}
-            src="https://www.gurujitips.in/wp-content/uploads/2017/06/reduce-bounce-rate-loading-gif.gif"
-            alt="loading"
-          ></img>
-        </div>
-      )}
+  const renderInputFields = () => {
+    return (
+      <>
+        <input
+          onChange={handleChange}
+          className="login-input"
+          type="text"
+          value={user.email}
+          name="email"
+          placeholder="Email*"
+        ></input>
+        <br />
+        <input
+          onChange={handleChange}
+          className="login-input"
+          type="password"
+          value={user.password}
+          name="password"
+          placeholder="Password*"
+        ></input>
+      </>
+    );
+  };
+
+  const renderButton = () => {
+    return submit ? (
+      <button onClick={handleClick} className="login-button">
+        <div className="login-text">SIGN IN</div>
+      </button>
+    ) : (
+      <button disabled className="login-button-disable">
+        <div className="login-text-disable">SIGN IN</div>
+      </button>
+    );
+  };
+
+  const renderLogin = () => {
+    return (
       <div
         className="login-container"
         style={{ height: height + "px", opacity: isLoading ? 0.5 : 1 }}
@@ -86,24 +114,11 @@ const LogIn: React.FC<props> = ({ login, setLogin }) => {
           <p style={{ marginLeft: "10px" }}>
             Other chefs are waiting for you !
           </p>
-          <div>
-            <input
-              onChange={handleChange}
-              type="text"
-              value={user.email}
-              name="email"
-              placeholder="Email*"
-            ></input>
-          </div>
-          <input
-            onChange={handleChange}
-            type="password"
-            value={user.password}
-            name="password"
-            placeholder="Password*"
-          ></input>
-          {login.status === "Email or password incorrect." && (
-            <p style={{ color: "red" }}>Email or password incorrect.</p>
+          {renderInputFields()}
+          {login.status === "error" && (
+            <p style={{ color: "red", marginLeft: "10px" }}>
+              Email or password incorrect.
+            </p>
           )}
           <div
             style={{
@@ -112,15 +127,7 @@ const LogIn: React.FC<props> = ({ login, setLogin }) => {
               margin: "10px 0",
             }}
           >
-            {submit ? (
-              <button onClick={handleClick} className="login-button">
-                <div className="login-text">SIGN IN</div>
-              </button>
-            ) : (
-              <button disabled className="login-button-disable">
-                <div className="login-text-disable">SIGN IN</div>
-              </button>
-            )}
+            {renderButton()}
           </div>
           <hr style={{ margin: "20px" }}></hr>
           <div style={{ display: "flex", justifyContent: "center" }}>
@@ -131,6 +138,13 @@ const LogIn: React.FC<props> = ({ login, setLogin }) => {
           </div>
         </div>
       </div>
+    );
+  };
+
+  return (
+    <div>
+      {isLoading && <Loading />}
+      {renderLogin()}
     </div>
   );
 };

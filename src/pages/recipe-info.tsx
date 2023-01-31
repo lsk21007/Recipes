@@ -4,6 +4,7 @@ import Button from "../components/Button";
 import person from "../assets/svg/person.svg";
 import { Hit } from "../typings/ApiType";
 import Banner from "../components/Banner";
+import Loading from "../components/Loading";
 import "./recipe-info.css";
 
 const Recipe: React.FC = () => {
@@ -49,25 +50,89 @@ const Recipe: React.FC = () => {
       window.removeEventListener("resize", () => setWidth(window.innerWidth));
   }, []);
 
+  const renderRecipesInfo = () => {
+    return recipe.ingredients.map(
+      (i: { image: string; text: string }, index: number) => {
+        return (
+          <div key={index} className="recipe-info-step-container">
+            <img
+              className="recipe-info-step"
+              src={i.image}
+              alt={i.text}
+              style={{ height: "70px" }}
+            ></img>
+            <div className="recipe-info-small-container">
+              <h5 style={{ marginTop: "5px" }}>Step: {index + 1}</h5>
+              <p>{i.text}</p>
+            </div>
+          </div>
+        );
+      }
+    );
+  };
+
+  const renderCommentComponent = () => {
+    return (
+      <div className="recipe-info-comment-container">
+        <h2 className="recipe-info-comment">Comment</h2>
+        <div style={{ display: "flex", marginBottom: "20px" }}>
+          <textarea
+            onChange={handleChange}
+            value={comment}
+            placeholder="comment"
+          ></textarea>
+          <button onClick={handleClick} className="recipe-info-button">
+            Submit
+          </button>
+        </div>
+        {comments.map((i: { time: string; comment: string }) => {
+          return (
+            <div style={{ display: "flex", marginBottom: "10px" }} key={i.time}>
+              <img
+                style={{
+                  width: "45px",
+                  height: "45px",
+                  marginRight: "5px",
+                }}
+                src={person}
+                alt="person"
+              ></img>
+              <div>
+                <div>{i.time}</div>
+                <div style={{ fontWeight: "bold" }}>{i.comment}</div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
+  const renderRightComponent = () => {
+    return (
+      <div className="recipe-info-sidebar">
+        <h2>Related Dishes</h2>
+        {recipe === "loading" ? null : (
+          <div>
+            {recipes.map((i: Hit, index: number) => (
+              <div key={index}>
+                <Link to={`/search/${i.recipe.label}`}>
+                  <Button content={i.recipe.label}></Button>
+                </Link>
+              </div>
+            ))}
+          </div>
+        )}
+        {renderCommentComponent()}
+      </div>
+    );
+  };
+
   return (
     <div>
       <Banner />
       {recipe === "loading" ? (
-        <div
-          style={{
-            width: "100%",
-            height: "810px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <img
-            style={{ width: "300px", height: "150px", objectFit: "cover" }}
-            src="https://www.gurujitips.in/wp-content/uploads/2017/06/reduce-bounce-rate-loading-gif.gif"
-            alt="loading"
-          ></img>
-        </div>
+        <Loading />
       ) : (
         <div className="recipe-info-top">
           <div>
@@ -77,76 +142,9 @@ const Recipe: React.FC = () => {
               alt={item}
             ></img>
             <h2 className="recipe-info-title">{item}</h2>
-            {recipe.ingredients.map(
-              (i: { image: string; text: string }, index: number) => {
-                return (
-                  <div key={index} className="recipe-info-step-container">
-                    <img
-                      className="recipe-info-step"
-                      src={i.image}
-                      alt={i.text}
-                      style={{height:"70px"}}
-                    ></img>
-                    <div className="recipe-info-small-container">
-                      <h5 style={{ marginTop: "5px" }}>Step: {index + 1}</h5>
-                      <p>{i.text}</p>
-                    </div>
-                  </div>
-                );
-              }
-            )}
+            {renderRecipesInfo()}
           </div>
-          {width > 768 && (
-            <div className="recipe-info-sidebar">
-              <h2>Related Dishes</h2>
-              {recipe === "loading" ? null : (
-                <div>
-                  {recipes.map((i: Hit, index: number) => (
-                    <div key={index}>
-                      <Link to={`/search/${i.recipe.label}`}>
-                        <Button content={i.recipe.label}></Button>
-                      </Link>
-                    </div>
-                  ))}
-                </div>
-              )}
-              <div className="recipe-info-comment-container">
-                <h2 className="recipe-info-comment">Comment</h2>
-                <div style={{ display: "flex", marginBottom: "20px" }}>
-                  <textarea
-                    onChange={handleChange}
-                    value={comment}
-                    placeholder="comment"
-                  ></textarea>
-                  <button onClick={handleClick} className="recipe-info-button">
-                    Submit
-                  </button>
-                </div>
-                {comments.map((i: { time: string; comment: string }) => {
-                  return (
-                    <div
-                      style={{ display: "flex", marginBottom: "10px" }}
-                      key={i.time}
-                    >
-                      <img
-                        style={{
-                          width: "45px",
-                          height: "45px",
-                          marginRight: "5px",
-                        }}
-                        src={person}
-                        alt="person"
-                      ></img>
-                      <div>
-                        <div>{i.time}</div>
-                        <div style={{ fontWeight: "bold" }}>{i.comment}</div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
+          {width > 768 && renderRightComponent()}
         </div>
       )}
     </div>
