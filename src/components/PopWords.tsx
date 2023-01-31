@@ -2,61 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import More from "./More";
-import burger from "../assets/svg/burger.svg";
-import pizza from "../assets/svg/pizza.svg";
-import salad from "../assets/svg/salad.svg";
-import rice from "../assets/svg/rice.svg";
-import noodle from "../assets/svg/noodle.svg";
-import pasta from "../assets/svg/pasta.svg";
-import dumpling from "../assets/svg/dumpling.svg";
-import potato from "../assets/svg/potato.svg";
-import beef from "../assets/svg/beef.svg";
-import lamb from "../assets/svg/lamb.svg";
-import pork from "../assets/svg/pork.svg";
-import chicken from "../assets/svg/chicken.svg";
+import ICONS from "../Constant/ICONS";
+import CATEGORY from "../Constant/CATEGORY";
 import "./PopWords.css";
-
-const POPICONS: string[] = [
-  burger,
-  pizza,
-  salad,
-  rice,
-  noodle,
-  pasta,
-  dumpling,
-  potato,
-  beef,
-  lamb,
-  pork,
-  chicken,
-];
-
-const POPCATEGORIES: string[] = [
-  "burger",
-  "pizza",
-  "salad",
-  "rice",
-  "noodle",
-  "pasta",
-  "dumpling",
-  "potato",
-  "beef",
-  "lamb",
-  "pork",
-  "chicken",
-];
 
 const PopWords: React.FC = () => {
   const [width, setWidth] = useState<number>(window.innerWidth);
-  const [category, setCategory] = useState<string[]>(POPCATEGORIES);
+  const [category, setCategory] = useState<string[]>(CATEGORY);
   const getWidth = () => {
     setWidth(window.innerWidth);
   };
   useEffect(() => {
     if (width > 1400) {
-      setCategory(POPCATEGORIES);
+      setCategory(CATEGORY);
     } else if (width < 1400) {
-      setCategory(() => POPCATEGORIES.slice(0, 8));
+      setCategory(() => CATEGORY.slice(0, 8));
     }
     window.addEventListener("resize", getWidth);
     return () => window.removeEventListener("resize", getWidth);
@@ -85,7 +45,7 @@ const PopWords: React.FC = () => {
                     <Link to={`/search/${i}`}>
                       <img
                         className="pop-words-img"
-                        src={POPICONS[index]}
+                        src={ICONS[index]}
                         alt={i}
                       ></img>
                     </Link>
