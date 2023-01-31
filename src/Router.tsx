@@ -14,7 +14,7 @@ import Error from "./pages/error";
 import loginType from "./typings/UserToken";
 
 import {
-    BrowserRouter,
+    HashRouter,
     Routes,
     Route,
 } from "react-router-dom";
@@ -29,7 +29,7 @@ const Router: React.FC = () => {
         DONE: []
     });
     return <>
-        <BrowserRouter>
+        <HashRouter>
             <NavBar login={login}></NavBar>
             <Routes>
                 <Route path="/" element={<Home />}></Route>
@@ -44,7 +44,7 @@ const Router: React.FC = () => {
                 <Route path="*" element={<Error />}></Route>
             </Routes>
             <Footer></Footer>
-        </BrowserRouter>
+        </HashRouter>
     </>
 }
 
