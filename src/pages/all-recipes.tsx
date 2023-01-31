@@ -29,9 +29,9 @@ const All: React.FC = () => {
     getApi();
   }, []);
 
-  function refreshPage() {
+  const refreshPage = () => {
     window.location.reload();
-  }
+  };
 
   const renderLargeAllRecipes = () => {
     return API.map((i: any, index: number) => {
