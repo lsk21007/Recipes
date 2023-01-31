@@ -16,7 +16,7 @@ import pork from "../assets/svg/pork.svg";
 import chicken from "../assets/svg/chicken.svg";
 import "./PopWords.css";
 
-const arr: string[] = [
+const POPICONS: string[] = [
   burger,
   pizza,
   salad,
@@ -31,7 +31,7 @@ const arr: string[] = [
   chicken,
 ];
 
-const Category: string[] = [
+const POPCATEGORIES: string[] = [
   "burger",
   "pizza",
   "salad",
@@ -48,15 +48,15 @@ const Category: string[] = [
 
 const PopWords: React.FC = () => {
   const [width, setWidth] = useState<number>(window.innerWidth);
-  const [category, setCategory] = useState<string[]>(Category);
+  const [category, setCategory] = useState<string[]>(POPCATEGORIES);
   const getWidth = () => {
     setWidth(window.innerWidth);
   };
   useEffect(() => {
     if (width > 1400) {
-      setCategory(Category);
+      setCategory(POPCATEGORIES);
     } else if (width < 1400) {
-      setCategory(() => Category.slice(0, 8));
+      setCategory(() => POPCATEGORIES.slice(0, 8));
     }
     window.addEventListener("resize", getWidth);
     return () => window.removeEventListener("resize", getWidth);
@@ -85,7 +85,7 @@ const PopWords: React.FC = () => {
                     <Link to={`/search/${i}`}>
                       <img
                         className="pop-words-img"
-                        src={arr[index]}
+                        src={POPICONS[index]}
                         alt={i}
                       ></img>
                     </Link>

@@ -30,6 +30,8 @@ const NavBar: React.FC<props> = ({ login }) => {
     return () => window.removeEventListener("resize", getWidth);
   }, []);
 
+  
+
   return (
     <div
       style={{
