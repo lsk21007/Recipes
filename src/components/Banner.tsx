@@ -54,7 +54,7 @@ const Banner: React.FC = () => {
       <>
         {BANNERITEM.map((item: BannerItemType) => {
           return item.element === "TEXT" ? (
-            <div className={item.parent}>
+            <div key={item.content} className={item.parent}>
               <div className={item.className} style={item.style}>
                 {item.content}
               </div>
@@ -62,6 +62,7 @@ const Banner: React.FC = () => {
           ) : (
             width > 767 && (
               <img
+                key={item.alt}
                 className={item.className}
                 src={item.src}
                 style={item.style}

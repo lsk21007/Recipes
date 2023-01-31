@@ -334,6 +334,7 @@ const Tobuylist: React.FC<props> = ({ login, setLogin }) => {
             {BUTTONS.map((btn, index) => {
               return (
                 <button
+                  key={index}
                   onClick={() => setOpen(index)}
                   name={index.toString()}
                   className="tobuylist-nav"
