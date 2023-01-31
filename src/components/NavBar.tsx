@@ -120,8 +120,8 @@ const NavBar: React.FC<props> = ({ login }) => {
                     <hr style={{ width: "300px" }}></hr>
                   </div>
                 )}
-                <NavDropdown.Item
-                  href="/all"
+                <Link
+                  to="/all"
                   style={{
                     backgroundColor: "white",
                     display: "flex",
@@ -131,7 +131,7 @@ const NavBar: React.FC<props> = ({ login }) => {
                   }}
                 >
                   See All
-                </NavDropdown.Item>
+                </Link>
               </NavDropdown>
               <Link
                 style={{ color: "white", padding: "8px", marginRight: "20px" }}
