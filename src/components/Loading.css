@@ -1,0 +1,10 @@
+.isLoading {
+    height: 70vh;
+    width: 100vw;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 0;
+  }
