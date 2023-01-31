@@ -128,25 +128,23 @@ const Recipe: React.FC = () => {
     );
   };
 
+  const renderRecipeInfo = () => {
+    return (
+      <div className="recipe-info-top">
+        <div>
+          <img className="recipe-info-img" src={recipe.image} alt={item}></img>
+          <h2 className="recipe-info-title">{item}</h2>
+          {renderRecipesInfo()}
+        </div>
+        {width > 768 && renderRightComponent()}
+      </div>
+    );
+  };
+
   return (
     <div>
       <Banner />
-      {recipe === "loading" ? (
-        <Loading />
-      ) : (
-        <div className="recipe-info-top">
-          <div>
-            <img
-              className="recipe-info-img"
-              src={recipe.image}
-              alt={item}
-            ></img>
-            <h2 className="recipe-info-title">{item}</h2>
-            {renderRecipesInfo()}
-          </div>
-          {width > 768 && renderRightComponent()}
-        </div>
-      )}
+      {recipe === "loading" ? <Loading /> : renderRecipeInfo()}
     </div>
   );
 };

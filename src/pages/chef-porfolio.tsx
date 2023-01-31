@@ -64,7 +64,9 @@ const Person: React.FC = () => {
               </h2>
             </Link>
             <Link to={`/recipes/${article[0].name}`}>
-              <p id="center">{article[0].title}</p>
+              <p id="center" style={{ fontWeight: "normal" }}>
+                {article[0].title}
+              </p>
             </Link>
           </div>
         </div>
