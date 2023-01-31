@@ -8,7 +8,7 @@ import CATEGORY from "../Constant/CATEGORY";
 import "./search.css";
 
 const Search: React.FC = () => {
-  const [Api, setApi] = useState<any>("loading");
+  const [Api, setApi] = useState<any>(null);
   const [width, setWidth] = useState<number>(window.innerWidth);
   const { query } = useParams();
 
@@ -103,7 +103,7 @@ const Search: React.FC = () => {
     );
   };
 
-  return <div>{Api === "loading" ? <Loading /> : renderSearchComponent()}</div>;
+  return <div>{!Api ? <Loading /> : renderSearchComponent()}</div>;
 };
 
 export default Search;
